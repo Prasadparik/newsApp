@@ -1,10 +1,8 @@
 import React, {useEffect} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import {StyleSheet, Text, ScrollView} from 'react-native';
 import Bbc from '../../components/BbcHeadlines';
 import Categories from '../../components/Categories';
 import Trending from '../../components/Trending';
-import config from '../../config/config';
-import GetNews from './GetNews';
 
 const HomeScreen = ({navigation}) => {
   //   useEffect(() => {
@@ -14,14 +12,27 @@ const HomeScreen = ({navigation}) => {
   return (
     <ScrollView>
       <Categories navigation={navigation} />
-      <Trending />
-      <Text>BBC HEADLINES</Text>
-      <Bbc />
+
+      <Text style={styles.Heading}>BBC HEADLINES</Text>
+      <Bbc navigation={navigation} />
+
+      <Text style={styles.Heading}>TRENDING</Text>
+      <Trending navigation={navigation} />
     </ScrollView>
   );
 };
 
 export default HomeScreen;
+
+const styles = StyleSheet.create({
+  Heading: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    paddingHorizontal: 12,
+    marginVertical: 8,
+    marginTop: 12,
+  },
+});
 
 // 1. Clear watchman watches: watchman watch-del-all
 // 2. Delete node_modules and run yarn install

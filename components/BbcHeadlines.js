@@ -2,15 +2,15 @@ import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
-  ScrollViewBase,
   ScrollView,
   ActivityIndicator,
   Image,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 import config from '../config/config';
 
-const Bbc = () => {
+const Bbc = ({navigation}) => {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
@@ -23,20 +23,31 @@ const Bbc = () => {
         console.log(news.length);
       })
       .catch(error => {
-        console.log(error);
+        console.log('ERROR [ GET BBC News ] ', error);
       });
   }, []);
 
   const TrendingNews = () => {
     return news.map((element, index) => {
       return (
-        <View key={index} style={styles.newsWrapper}>
-          <Image
+        <TouchableOpacity
+          key={index}
+          style={styles.newsWrapper}
+          onPress={() =>
+            navigation.navigate('WebView', {
+              url: element.url,
+            })
+          }>
+          <View>
+            {/* <Image
             source={{uri: `${element.urlToImage}`}}
             style={styles.newsImage}
-          />
-          <Text style={styles.newsTitle}>{element.title}</Text>
-        </View>
+          /> */}
+
+            <Text style={styles.newsTitle}>{element.title}</Text>
+            <Text style={styles.publishedAt}>{element.publishedAt}</Text>
+          </View>
+        </TouchableOpacity>
       );
     });
   };
@@ -46,7 +57,10 @@ const Bbc = () => {
       {news.length === 0 ? (
         <ActivityIndicator color="red" size="large" />
       ) : (
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+        <ScrollView
+          style={styles.ScrollView}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}>
           {TrendingNews()}
         </ScrollView>
       )}
@@ -57,12 +71,15 @@ const Bbc = () => {
 export default Bbc;
 
 const styles = StyleSheet.create({
+  ScrollView: {
+    // backgroundColor: '#fff',
+  },
   newsWrapper: {
-    padding: 8,
-    backgroundColor: '#fff',
+    padding: 12,
     marginHorizontal: 8,
     marginVertical: 8,
-    borderRadius: 35,
+    borderRadius: 12,
+    backgroundColor: '#6c44e9',
   },
   newsImage: {
     height: 200,
@@ -73,8 +90,19 @@ const styles = StyleSheet.create({
     backgroundColor: '#333',
   },
   newsTitle: {
-    maxWidth: 200,
-    textAlign: 'justify',
+    maxWidth: 300,
+    marginTop: 12,
+    marginHorizontal: 12,
+    marginVertical: 12,
+    color: '#eee',
+    fontWeight: 'bold',
+    fontSize: 24,
+  },
+  publishedAt: {
+    color: '#fff',
+    opacity: 0.8,
+    fontWeight: 'bold',
+    marginTop: 12,
     marginHorizontal: 8,
   },
 });

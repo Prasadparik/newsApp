@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
-  ScrollViewBase,
+  TouchableOpacity,
   ScrollView,
   ActivityIndicator,
   Image,
@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import config from '../config/config';
 
-const Trending = () => {
+const Trending = ({navigation}) => {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
@@ -30,13 +30,22 @@ const Trending = () => {
   const TrendingNews = () => {
     return news.map((element, index) => {
       return (
-        <View key={index} style={styles.newsWrapper}>
-          <Image
-            source={{uri: `${element.urlToImage}`}}
-            style={styles.newsImage}
-          />
-          <Text style={styles.newsTitle}>{element.title}</Text>
-        </View>
+        <TouchableOpacity
+          key={index}
+          style={styles.newsWrapper}
+          onPress={() =>
+            navigation.navigate('WebView', {
+              url: element.url,
+            })
+          }>
+          <View>
+            <Image
+              source={{uri: `${element.urlToImage}`}}
+              style={styles.newsImage}
+            />
+            <Text style={styles.newsTitle}>{element.title}</Text>
+          </View>
+        </TouchableOpacity>
       );
     });
   };
@@ -57,23 +66,28 @@ const Trending = () => {
 export default Trending;
 
 const styles = StyleSheet.create({
+  ScrollView: {
+    // backgroundColor: '#fff',
+  },
   newsWrapper: {
     padding: 8,
     backgroundColor: '#fff',
     marginHorizontal: 8,
     marginVertical: 8,
-    borderRadius: 35,
+    borderRadius: 15,
+    // elevation: 5,
+    shadowColor: '#888',
   },
   newsImage: {
     height: 200,
-    width: 200,
-    borderRadius: 35,
+    width: 300,
+    borderRadius: 15,
     marginHorizontal: 8,
     marginVertical: 12,
     backgroundColor: '#333',
   },
   newsTitle: {
-    maxWidth: 200,
+    maxWidth: 300,
     textAlign: 'justify',
     marginHorizontal: 8,
   },

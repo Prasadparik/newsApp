@@ -6,6 +6,7 @@ import {
   ScrollView,
   Image,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -41,13 +42,21 @@ const GetNews = ({route, navigation}) => {
   const CategoryNews = () => {
     return news.map((news, index) => {
       return (
-        <View key={index} style={styles.newsWrapper}>
-          <Image
-            style={styles.newsImage}
-            source={{uri: `${news.urlToImage}`}}
-          />
-          <Text style={styles.newsTitle}>{news.title}</Text>
-        </View>
+        <TouchableOpacity
+          key={index}
+          onPress={() =>
+            navigation.navigate('WebView', {
+              url: news.url,
+            })
+          }>
+          <View style={styles.newsWrapper}>
+            <Image
+              style={styles.newsImage}
+              source={{uri: `${news.urlToImage}`}}
+            />
+            <Text style={styles.newsTitle}>{news.title}</Text>
+          </View>
+        </TouchableOpacity>
       );
     });
   };
@@ -66,16 +75,22 @@ const GetNews = ({route, navigation}) => {
 export default GetNews;
 
 const styles = StyleSheet.create({
+  scrollview: {
+    backgroundColor: '#f8f6fe',
+    padding: 8,
+  },
   newsWrapper: {
     padding: 8,
     backgroundColor: '#fff',
     marginHorizontal: 8,
     marginVertical: 8,
-    borderRadius: 12,
+    borderRadius: 22,
+    elevation: 5,
+    // shadowColor: '#bfcce0',
   },
   newsImage: {
     height: 200,
-    borderRadius: 12,
+    borderRadius: 22,
     marginHorizontal: 8,
     marginVertical: 12,
     backgroundColor: '#333',
@@ -83,6 +98,13 @@ const styles = StyleSheet.create({
   newsTitle: {
     textAlign: 'justify',
     marginHorizontal: 8,
-    fontSize: 18,
+    fontSize: 16,
+    letterSpacing: 1.2,
+  },
+  newspublishedAt: {
+    paddingHorizontal: 6,
+    paddingVertical: 12,
+    textAlign: 'right',
+    opacity: 0.7,
   },
 });

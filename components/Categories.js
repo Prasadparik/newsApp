@@ -45,20 +45,20 @@ const Categories = () => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
   },
   category: {
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 50,
-    borderColor: '#9047ff',
-    backgroundColor: '#fcfaff',
-    borderWidth: 2,
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    borderRadius: 20,
+    // borderColor: '#6c44e9',
+    backgroundColor: '#f0f1f3',
+    // borderWidth: 2,
     margin: 4,
     marginVertical: 18,
   },
   categoryName: {
-    color: '#9047ff',
+    color: '#757986',
     fontWeight: 'bold',
     letterSpacing: 1,
   },
