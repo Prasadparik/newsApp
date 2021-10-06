@@ -15,7 +15,7 @@ const Trending = ({navigation}) => {
 
   useEffect(() => {
     fetch(
-      `https://newsapi.org/v2/top-headlines?country=in&apiKey=${config.API_KEY}`,
+      `https://newsapi.org/v2/everything?q=apple&from=2021-10-05&to=2021-10-05&sortBy=popularity&apiKey=${config.API_KEY}`,
     )
       .then(res => res.json())
       .then(response => {

@@ -78,8 +78,10 @@ const styles = StyleSheet.create({
     padding: 12,
     marginHorizontal: 8,
     marginVertical: 8,
-    borderRadius: 12,
-    backgroundColor: '#6c44e9',
+    borderRadius: 22,
+    backgroundColor: '#6B53FF',
+    shadowColor: '#000',
+    elevation: 6,
   },
   newsImage: {
     height: 200,

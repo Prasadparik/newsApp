@@ -23,9 +23,9 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
-          name="Trending"
+          name="NEWS"
           component={HomeScreen}
-          options={{headerShown: false}}
+          options={{headerShown: true}}
         />
         <Stack.Screen name="GetNews" component={GetNews} />
         <Stack.Screen

@@ -10,12 +10,12 @@ import {
 } from 'react-native';
 import config from '../config/config';
 
-const Trending = ({navigation}) => {
+const UsHeadline = ({navigation}) => {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
     fetch(
-      `https://newsapi.org/v2/top-headlines?country=in&apiKey=${config.API_KEY}`,
+      `https://newsapi.org/v2/top-headlines?country=us&apiKey=${config.API_KEY}`,
     )
       .then(res => res.json())
       .then(response => {
@@ -27,7 +27,7 @@ const Trending = ({navigation}) => {
       });
   }, []);
 
-  const TrendingNews = () => {
+  const UsHeadlineNews = () => {
     return news.map((element, index) => {
       return (
         <TouchableOpacity
@@ -56,14 +56,14 @@ const Trending = ({navigation}) => {
         <ActivityIndicator color="red" size="large" />
       ) : (
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          {TrendingNews()}
+          {UsHeadlineNews()}
         </ScrollView>
       )}
     </View>
   );
 };
 
-export default Trending;
+export default UsHeadline;
 
 const styles = StyleSheet.create({
   ScrollView: {

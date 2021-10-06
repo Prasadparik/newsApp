@@ -10,12 +10,12 @@ import {
 } from 'react-native';
 import config from '../config/config';
 
-const Trending = ({navigation}) => {
+const Tesla = ({navigation}) => {
   const [news, setNews] = useState([]);
 
   useEffect(() => {
     fetch(
-      `https://newsapi.org/v2/top-headlines?country=in&apiKey=${config.API_KEY}`,
+      `https://newsapi.org/v2/everything?q=tesla&from=2021-09-06&sortBy=publishedAt&apiKey=${config.API_KEY}`,
     )
       .then(res => res.json())
       .then(response => {
@@ -63,7 +63,7 @@ const Trending = ({navigation}) => {
   );
 };
 
-export default Trending;
+export default Tesla;
 
 const styles = StyleSheet.create({
   ScrollView: {

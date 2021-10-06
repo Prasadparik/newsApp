@@ -52,15 +52,14 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderRadius: 20,
     // borderColor: '#6c44e9',
-    backgroundColor: '#f0f1f3',
+    backgroundColor: '#FAF4FF',
     // borderWidth: 2,
-    margin: 4,
+    marginHorizontal: 6,
     marginVertical: 18,
   },
   categoryName: {
-    color: '#757986',
-    fontWeight: 'bold',
-    letterSpacing: 1,
+    color: '#2400FF',
+    letterSpacing: 0.8,
   },
 });
 export default Categories;

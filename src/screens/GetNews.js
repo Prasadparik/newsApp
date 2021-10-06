@@ -25,7 +25,7 @@ const GetNews = ({route, navigation}) => {
 
     // API DATA FETCH
     fetch(
-      `https://newsapi.org/v2/top-headlines?country=us&category=${CATEGORY}&apiKey=${config.API_KEY}`,
+      `https://newsapi.org/v2/top-headlines?country=in&category=${CATEGORY}&apiKey=${config.API_KEY}`,
     )
       .then(res => res.json())
       .then(response => {
@@ -50,11 +50,13 @@ const GetNews = ({route, navigation}) => {
             })
           }>
           <View style={styles.newsWrapper}>
+            <Text style={styles.newsTitle}>{news.title}</Text>
+
             <Image
               style={styles.newsImage}
               source={{uri: `${news.urlToImage}`}}
             />
-            <Text style={styles.newsTitle}>{news.title}</Text>
+            <Text style={styles.newscontent}>{news.content}</Text>
           </View>
         </TouchableOpacity>
       );
@@ -66,7 +68,7 @@ const GetNews = ({route, navigation}) => {
       {news.length === 0 ? (
         <ActivityIndicator color="red" size="large" />
       ) : (
-        <ScrollView>{CategoryNews()}</ScrollView>
+        <ScrollView style={styles.scrollview}>{CategoryNews()}</ScrollView>
       )}
     </View>
   );
@@ -76,30 +78,35 @@ export default GetNews;
 
 const styles = StyleSheet.create({
   scrollview: {
-    backgroundColor: '#f8f6fe',
+    backgroundColor: '#fafcff',
     padding: 8,
   },
   newsWrapper: {
-    padding: 8,
+    padding: 12,
     backgroundColor: '#fff',
     marginHorizontal: 8,
     marginVertical: 8,
-    borderRadius: 22,
-    elevation: 5,
+    borderRadius: 14,
+    elevation: 1,
     // shadowColor: '#bfcce0',
   },
   newsImage: {
     height: 200,
-    borderRadius: 22,
+    borderRadius: 14,
     marginHorizontal: 8,
     marginVertical: 12,
     backgroundColor: '#333',
   },
   newsTitle: {
-    textAlign: 'justify',
+    // textAlign: 'justify',
     marginHorizontal: 8,
-    fontSize: 16,
-    letterSpacing: 1.2,
+    fontSize: 14,
+    fontWeight: 'bold',
+  },
+  newscontent: {
+    // textAlign: 'justify',
+    marginHorizontal: 8,
+    fontSize: 12,
   },
   newspublishedAt: {
     paddingHorizontal: 6,
