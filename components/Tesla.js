@@ -2,11 +2,11 @@ import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
-  TouchableOpacity,
   ScrollView,
   ActivityIndicator,
   Image,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 import config from '../config/config';
 
@@ -23,11 +23,11 @@ const Tesla = ({navigation}) => {
         console.log(news.length);
       })
       .catch(error => {
-        console.log(error);
+        console.log('ERROR [ GET BBC News ] ', error);
       });
   }, []);
 
-  const TrendingNews = () => {
+  const TeslaNews = () => {
     return news.map((element, index) => {
       return (
         <TouchableOpacity
@@ -39,11 +39,15 @@ const Tesla = ({navigation}) => {
             })
           }>
           <View>
-            <Image
-              source={{uri: `${element.urlToImage}`}}
-              style={styles.newsImage}
-            />
-            <Text style={styles.newsTitle}>{element.title}</Text>
+            {/* <Image
+            source={{uri: `${element.urlToImage}`}}
+            style={styles.newsImage}
+          /> */}
+
+            <Text style={styles.newsTitle} numberOfLines={2}>
+              {element.title}
+            </Text>
+            <Text style={styles.publishedAt}>{element.publishedAt}</Text>
           </View>
         </TouchableOpacity>
       );
@@ -55,8 +59,11 @@ const Tesla = ({navigation}) => {
       {news.length === 0 ? (
         <ActivityIndicator color="red" size="large" />
       ) : (
-        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-          {TrendingNews()}
+        <ScrollView
+          style={styles.ScrollView}
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}>
+          {TeslaNews()}
         </ScrollView>
       )}
     </View>
@@ -70,26 +77,37 @@ const styles = StyleSheet.create({
     // backgroundColor: '#fff',
   },
   newsWrapper: {
-    padding: 0,
-    marginHorizontal: 1,
+    padding: 12,
+    marginHorizontal: 8,
     marginVertical: 8,
-    borderRadius: 15,
-    // elevation: 5,
-    shadowColor: '#888',
+    borderRadius: 22,
+    backgroundColor: '#FAF4FF',
+    shadowColor: '#000',
+    elevation: 1,
   },
   newsImage: {
-    height: 140,
-    width: 235,
-    borderRadius: 15,
+    height: 200,
+    width: 200,
+    borderRadius: 35,
     marginHorizontal: 8,
     marginVertical: 12,
     backgroundColor: '#333',
-    borderColor: '#FAF4FF',
-    borderWidth: 2,
   },
   newsTitle: {
-    maxWidth: 235,
-    textAlign: 'justify',
+    maxWidth: 300,
+    marginTop: 12,
+    marginHorizontal: 12,
+    marginVertical: 12,
+    color: '#2400FF',
+    opacity: 0.7,
+    fontWeight: 'bold',
+    fontSize: 24,
+  },
+  publishedAt: {
+    color: '#2400FF',
+    opacity: 0.5,
+    fontWeight: 'bold',
+    marginTop: 12,
     marginHorizontal: 8,
   },
 });

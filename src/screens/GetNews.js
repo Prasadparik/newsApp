@@ -50,13 +50,17 @@ const GetNews = ({route, navigation}) => {
             })
           }>
           <View style={styles.newsWrapper}>
-            <Text style={styles.newsTitle}>{news.title}</Text>
+            <Text style={styles.newsTitle} numberOfLines={2}>
+              {news.title}
+            </Text>
 
             <Image
               style={styles.newsImage}
               source={{uri: `${news.urlToImage}`}}
             />
-            <Text style={styles.newscontent}>{news.content}</Text>
+            <Text style={styles.newscontent} numberOfLines={3}>
+              {news.content}
+            </Text>
           </View>
         </TouchableOpacity>
       );
@@ -98,7 +102,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#333',
   },
   newsTitle: {
-    // textAlign: 'justify',
+    color: '#000',
     marginHorizontal: 8,
     fontSize: 14,
     fontWeight: 'bold',

@@ -43,7 +43,9 @@ const Trending = ({navigation}) => {
               source={{uri: `${element.urlToImage}`}}
               style={styles.newsImage}
             />
-            <Text style={styles.newsTitle}>{element.title}</Text>
+            <Text style={styles.newsTitle} numberOfLines={2}>
+              {element.title}
+            </Text>
           </View>
         </TouchableOpacity>
       );
@@ -91,5 +93,6 @@ const styles = StyleSheet.create({
     maxWidth: 235,
     textAlign: 'justify',
     marginHorizontal: 8,
+    paddingHorizontal: 8,
   },
 });

@@ -44,7 +44,9 @@ const Bbc = ({navigation}) => {
             style={styles.newsImage}
           /> */}
 
-            <Text style={styles.newsTitle}>{element.title}</Text>
+            <Text style={styles.newsTitle} numberOfLines={2}>
+              {element.title}
+            </Text>
             <Text style={styles.publishedAt}>{element.publishedAt}</Text>
           </View>
         </TouchableOpacity>
@@ -101,7 +103,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
   },
   publishedAt: {
-    color: '#fff',
+    color: '#eee',
     opacity: 0.8,
     fontWeight: 'bold',
     marginTop: 12,

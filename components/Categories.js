@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
   },
   categoryName: {
     color: '#2400FF',
+    opacity: 0.7,
     letterSpacing: 0.8,
   },
 });

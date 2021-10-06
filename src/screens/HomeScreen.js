@@ -16,24 +16,26 @@ const HomeScreen = ({navigation}) => {
     <ScrollView style={styles.ScrollView}>
       <Categories navigation={navigation} />
 
-      <Text style={styles.Heading}>BBC HEADLINES</Text>
-      <Bbc navigation={navigation} />
-      <View style={styles.divider} />
-
       <Text style={styles.Heading}>TRENDING</Text>
       <Trending navigation={navigation} />
       <View style={styles.divider} />
 
+      <Text style={styles.Heading}>BBC HEADLINES</Text>
+      <Bbc navigation={navigation} />
+      <View style={styles.divider} />
+
       <Text style={styles.Heading}>US HEADLINES</Text>
-      <UsHeadline navigation={UsHeadline} />
+      <UsHeadline navigation={navigation} />
+      <View style={styles.divider} />
+
+      <Text style={styles.Heading}>Tesla News</Text>
+      <Tesla navigation={navigation} />
       <View style={styles.divider} />
 
       <Text style={styles.Heading}>Apple News</Text>
       <Apple navigation={navigation} />
-      <View style={styles.divider} />
 
-      <Text style={styles.Heading}>Tesla News</Text>
-      <Tesla navigation={Tesla} />
+      <View style={styles.BottomSpace} />
     </ScrollView>
   );
 };
@@ -55,6 +57,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#ccc',
     marginHorizontal: 16,
     marginVertical: 8,
+  },
+  BottomSpace: {
+    height: 40,
   },
 });
 
